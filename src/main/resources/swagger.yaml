@@ -1,0 +1,356 @@
+openapi: 3.0.0
+info:
+  title: Swagger VolgSys - OpenAPI 3.0
+  description: |
+    This is a sample Pet Store Server based on the OpenAPI 3.0 specification. You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+    _If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option!_
+
+    Some useful links:
+    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+security:
+  - JWT: [ ]
+tags:
+  - name: Endereco
+    description: Buscar endereco completo
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: whatsap
+    description: enviar mensagem
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: cpf
+    description: dados cpf
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: SpTrans
+    description: dados linha
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: Users
+    description: Cadastro usuario
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: Autentication
+    description: Token
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  '/cep':
+    get:
+      tags:
+        - Endereco
+      summary: buscar Cep
+      description: Cep site correios - API
+      operationId: BuscaCep
+      parameters:
+        - in: query
+          name: cep_id
+          schema:
+            type: string
+            description: Cep para pesquisa
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CepResponse'
+        '400':
+          description: Invalid Cep
+        '404':
+          description: Cep not found
+        '405':
+          description: Validation exception
+      security:
+        - JWT: []
+  '/authenticate':
+    post:
+      tags:
+        - Autentication
+      summary: Autenticação JWT
+      description: Endpoint para autenticar um usuário e obter um token JWT
+      operationId: createAuthenticationToken
+      parameters:
+        - in: query
+          name: user
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: senha
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+        '401':
+          description: Credenciais inválidas
+        '403':
+          description: Usuário desativado
+  '/whatsap':
+    post:
+      tags:
+        - whatsap
+      summary: Enviar Mensagem
+      description: Descricao
+      operationId: SendMessage
+      parameters:
+        - in: query
+          name: phone
+          schema:
+            type: string
+            description: Cep para pesquisa
+          required: true
+        - in: query
+          name: mensagem
+          schema:
+            type: string
+            description: mensageria
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid Cep
+        '404':
+          description: Cep not found
+        '405':
+          description: Validation exception
+      security:
+        - JWT: []
+
+  '/cpf':
+    post:
+      tags:
+        - cpf
+      summary: Enviar Mensagem
+      description: Descricao
+      operationId: getCPF
+      parameters:
+        - in: query
+          name: cpf
+          schema:
+            type: string
+            description: Cpf para pesquisa
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid Cep
+        '404':
+          description: Cep not found
+        '405':
+          description: Validation exception
+      security:
+        - JWT: [ ]
+  '/linhas':
+    get:
+      tags:
+        - SpTrans
+      summary: Pegar informacoes da linha
+      description: Descricao
+      operationId: getLinhas
+      parameters:
+        - in: query
+          name: linha ou nome
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+        '400':
+          description: Invalid Linha
+        '404':
+          description: linha not found
+        '405':
+          description: Validation exception
+      security:
+        - JWT: [ ]
+  '/user':
+    put:
+      tags:
+        - Users
+      summary: Cadastrar usuario
+      description: Descricao
+      operationId: setUser
+      parameters:
+        - in: query
+          name: Nome Completo
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: cpf/cnpj
+          description: 'Digite somente numeros'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: email
+          description: 'xxx@xxx.xxx'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: telefone
+          description: '(DDD) XXXXX-XXXX'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: Data de Nascimento
+          description: 'Formato: dd-mm-yyyy'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: cep
+          description: 'Digite somente numeros.'
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: password
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+        '400':
+          description: Invalid Linha
+        '404':
+          description: linha not found
+        '405':
+          description: Validation exception
+      security:
+        - JWT: [ ]
+  '/user/listUser':
+    get:
+      tags:
+        - Users
+      summary: listar usuario
+      description: Descricao
+      operationId: listUser
+      parameters:
+        - in: query
+          name: cpfcnpj
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listUser'
+        '400':
+          description: Invalid Linha
+        '404':
+          description: linha not found
+        '405':
+          description: Validation exception
+      security:
+        - JWT: [ ]
+  # Adicione outros endpoints aqui
+components:
+  schemas:
+    StringResponse:
+      type: string
+    listUser:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: ""
+        cpfcnpj:
+          type: string
+          example: ""
+        email:
+          type: string
+          example: ""
+        telefone:
+          type: string
+          example: ""
+        dtnascimento:
+          type: LocalDate
+          example: ""
+        cep:
+          type: string
+          example: ""
+        rua:
+          type: string
+          example: ""
+        tipopessoa:
+          type: string
+          example: ""
+    CepResponse:
+      type: object
+      properties:
+        cep:
+          type: string
+          example: ""
+        logradouro:
+          type: string
+          example: ""
+        complemento:
+          type: string
+          example: ""
+        bairro:
+          type: string
+          format: ""
+        localidade:
+          type: string
+          example: ""
+        uf:
+          type: string
+          example: ""
+        ibge:
+          type: string
+          example: ""
+        gia:
+          type: string
+          example: ""
+        ddd:
+          type: string
+          example: ""

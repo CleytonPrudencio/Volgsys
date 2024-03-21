@@ -19,9 +19,9 @@ public class ServiceNotification {
     public void senSMS(String phonenumber, String name){
 
         try {
-            HttpResponse<String> response = Unirest.post("https://api.easysendsms.app/bulksms")
+            HttpResponse<String> response = Unirest.post("URL SEND GRID")
                     .header("Content-Type", "application/x-www-form-urlencoded")
-                    .header("Cookie", "ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM")
+                    .header("Cookie", "COOKIE SEND GRID")
                     .field("username", "")//apagado securtiy
                     .field("password", "")//apagado security
                     .field("to", "55"+phonenumber)

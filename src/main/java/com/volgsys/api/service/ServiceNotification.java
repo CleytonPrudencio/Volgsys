@@ -22,8 +22,8 @@ public class ServiceNotification {
             HttpResponse<String> response = Unirest.post("https://api.easysendsms.app/bulksms")
                     .header("Content-Type", "application/x-www-form-urlencoded")
                     .header("Cookie", "ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM")
-                    .field("username", "cleyticlzrs5i2023")
-                    .field("password", "25242598@Rc")
+                    .field("username", "")//apagado securtiy
+                    .field("password", "")//apagado security
                     .field("to", "55"+phonenumber)
                         .field("from", "VolgSys")
                     .field("text", "Bem vindo " + name + ". Seu cadastro é importante para nós.")
@@ -51,9 +51,8 @@ public class ServiceNotification {
         Email to = new Email(email);
         Content content = new Content("text/plain", body);
         Mail mail = new Mail(from, subject, to, content);
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid("adicionar via API sendgrid");
 
-        //SendGrid sg = new SendGrid(System.getenv("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\n"));
         Request request = new Request();
         try {
             request.setMethod(Method.POST);

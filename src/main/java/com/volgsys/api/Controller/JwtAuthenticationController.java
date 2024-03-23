@@ -4,6 +4,7 @@ import com.volgsys.api.AuthenticateApi;
 import com.volgsys.api.SwaggerConfig.JwtTokenUtil;
 import com.volgsys.api.model.dto.JwtResponse;
 import com.volgsys.api.service.JwtUserDetailsService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,11 +12,14 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@Api(tags = {"Authentication"}, value = "Controller", description = "Login")
 public class JwtAuthenticationController implements AuthenticateApi {
 
     private final AuthenticationManager authenticationManager;

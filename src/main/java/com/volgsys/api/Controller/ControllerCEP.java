@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@Api(tags = {"Endereco"}, value = "Controller", description = "buscar dados de endereco")
+@Api(tags = {"Address"}, value = "Controller", description = "find by address")
 public class ControllerCEP implements CepApi {
 
     @Autowired

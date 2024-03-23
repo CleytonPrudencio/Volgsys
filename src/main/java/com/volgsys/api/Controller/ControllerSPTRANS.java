@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@Api(tags = {"SpTrans"}, value = "Controller", description = "buscar dados de linhas")
+@Api(tags = {"SpTrans"}, value = "Controller", description = "find by lines")
 public class ControllerSPTRANS implements LinhasApi {
 
     @Autowired

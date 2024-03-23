@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@Api(tags = {"Users"}, value = "Controller", description = "Users")
+@Api(tags = {"Users"}, value = "Controller", description = "register Users")
 public class ControllerUsersAcess implements UserApi {
 
     @Autowired

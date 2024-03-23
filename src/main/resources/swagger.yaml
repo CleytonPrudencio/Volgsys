@@ -2,36 +2,34 @@ openapi: 3.0.0
 info:
   title: Swagger VolgSys - OpenAPI 3.0
   description: |
-    This is a sample Pet Store Server based on the OpenAPI 3.0 specification. You can find out more about
-    Swagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
-    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
-    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+    Volgsys é um projeto de estudo de API, criando micro serviços. Este é um servidor de exemplo baseado na especificação OpenAPI 3.0. Você pode obter mais informações sobre o Swagger em [swagger.io](https://swagger.io). Agora você pode nos ajudar a melhorar a API, fazendo alterações na definição ou no código. Dessa forma, com o tempo, podemos melhorar a API em geral e expor algumas das novas funcionalidades no OAS3.
 
-    _If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option!_
+    Aqui também você pode encontrar todos os pacotes publicados para download dos repositórios:
 
-    Some useful links:
-    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
-    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+    - Projeto criado em Java, Spring Boot, JPA, Hibernate. O mesmo está publicado nestas mesmas APIs:
+      [Repositório do Backend](https://github.com/CleytonPrudencio/Volgsys)
+
+    - Projeto Angular para consumo do backend onde se encontram as APIs:
+      [Repositório do Frontend Angular](https://github.com/CleytonPrudencio/front-angular)
+    
+    Para mais informações ou sugestões, entre em contato conosco pelo email: ticleyton@gmail.com.
+
   termsOfService: http://swagger.io/terms/
   contact:
-    email: apiteam@swagger.io
+    email: ticleyton@gmail.com
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.11
 externalDocs:
-  description: Find out more about Swagger
+  description: Saiba mais sobre Swagger
   url: http://swagger.io
 servers:
   - url: https://petstore3.swagger.io/api/v3
 security:
   - JWT: [ ]
 tags:
-  - name: Endereco
-    description: Buscar endereco completo
-    externalDocs:
-      description: Find out more
-      url: http://swagger.io
+  - name: Address
   - name: whatsap
     description: enviar mensagem
     externalDocs:
@@ -52,7 +50,7 @@ tags:
     externalDocs:
       description: Find out more
       url: http://swagger.io
-  - name: Autentication
+  - name: Authentication
     description: Token
     externalDocs:
       description: Find out more
@@ -61,7 +59,7 @@ paths:
   '/cep':
     get:
       tags:
-        - Endereco
+        - Address
       summary: buscar Cep
       description: Cep site correios - API
       operationId: BuscaCep
@@ -85,12 +83,10 @@ paths:
           description: Cep not found
         '405':
           description: Validation exception
-      security:
-        - JWT: []
   '/authenticate':
     post:
       tags:
-        - Autentication
+        - Authentication
       summary: Autenticação JWT
       description: Endpoint para autenticar um usuário e obter um token JWT
       operationId: createAuthenticationToken
@@ -145,8 +141,6 @@ paths:
           description: Cep not found
         '405':
           description: Validation exception
-      security:
-        - JWT: []
 
   '/cpf':
     post:
@@ -171,8 +165,6 @@ paths:
           description: Cep not found
         '405':
           description: Validation exception
-      security:
-        - JWT: [ ]
   '/linhas':
     get:
       tags:
@@ -199,8 +191,6 @@ paths:
           description: linha not found
         '405':
           description: Validation exception
-      security:
-        - JWT: [ ]
   '/user':
     put:
       tags:
@@ -262,8 +252,6 @@ paths:
           description: linha not found
         '405':
           description: Validation exception
-      security:
-        - JWT: [ ]
   '/user/listUser':
     get:
       tags:
@@ -290,9 +278,6 @@ paths:
           description: linha not found
         '405':
           description: Validation exception
-      security:
-        - JWT: [ ]
-  # Adicione outros endpoints aqui
 components:
   schemas:
     StringResponse:
@@ -354,3 +339,4 @@ components:
         ddd:
           type: string
           example: ""
+

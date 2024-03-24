@@ -1,6 +1,7 @@
 package com.volgsys.api.service;
 
 import com.volgsys.api.model.dto.BankDTO;
+import com.volgsys.api.model.dto.EmpresaDTO;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,22 @@ public class ServiceBrasilAPI {
 
         return response.getBody();
     }
+
+    public EmpresaDTO buscaCNPJ(Long cnpj) throws Exception {
+        final String baseUrl = "https://brasilapi.com.br/api/cnpj/v1/" + cnpj;
+
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<EmpresaDTO> response = restTemplate.exchange(
+                baseUrl,
+                HttpMethod.GET,
+                null,
+                EmpresaDTO.class
+        );
+
+        return response.getBody();
+    }
+
+
 
 }

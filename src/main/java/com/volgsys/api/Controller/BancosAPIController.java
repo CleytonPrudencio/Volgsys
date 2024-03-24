@@ -19,12 +19,12 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Api(tags = {"Banks"}, value = "Controller", description = "find by banks")
-public class BrasilAPIController {
+public class BancosAPIController {
 
     @Autowired
     private final ServiceBrasilAPI serviceBrasilAPI;
 
-    public BrasilAPIController(ServiceBrasilAPI serviceBrasilAPI) {
+    public BancosAPIController(ServiceBrasilAPI serviceBrasilAPI) {
         this.serviceBrasilAPI = serviceBrasilAPI;
     }
 
